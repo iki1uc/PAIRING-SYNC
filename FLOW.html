@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>ATOM · REAKTIONS-BEWEIS</title>
 
+<style>
+body { margin:0; background:#000; color:#0f0; font-family:Consolas; }
+canvas { display:block; }
+</style>
+</head>
+
+<body>
+
+<canvas id="proofCanvas"></canvas>
+
+<script>
+const canvas = document.getElementById("proofCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// Reaktions-Knoten
+const chain = [
+    "◉","3","9","◎","81","◆","△","27","▣","3 ↺"
+];
+
+let t = 0;
+
+function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    ctx.save();
+    ctx.translate(canvas.width/2, canvas.height/2);
+
+    chain.forEach((label,i)=>{
+        const angle = t/80 + i;
+        const radius = 80 * i;
+
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+
+        ctx.fillStyle = "#0f0";
+        ctx.font = "28px Consolas";
+        ctx.fillText(label, x, y);
+    });
+
+    ctx.restore();
+    t++;
+    requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+
+</body>
+</html>
