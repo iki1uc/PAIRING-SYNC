@@ -96,6 +96,29 @@ ATOM → HYPNOSE → MANA → DIAMANT → FLOW → ESEE → ID → ATOM
 → PAIRING‑MAP (Layer 8)
 
 ────────────────────────────────────────
+import { ATOM } from "./ATOM/atom.room.js";
+import { FLOW } from "./FLOW.js";
+import { ESEE } from "./ESEE.js";
+import { SYNTH } from "./synth.js";
+import { MANA } from "./MANA.js";
+import { HYPNOSE } from "./HYP.js";
+import { DIAMANT } from "./Diamant.js";
+import { NC_CHECK } from "./NCCheck.js";
+import { PAIRING_SYNC } from "./PAIRING-SYNC.js";
+import { PAIRING_MAP } from "./PAIRING-MAP.js";
+const fusion = PAIRING_MAP({
+    atom: ATOM(),
+    flow: FLOW(),
+    esee: ESEE(),
+    synth: SYNTH(),
+    mana: MANA(),
+    hypnose: HYPNOSE(),
+    diamant: DIAMANT(),
+    nc: NC_CHECK(),
+    pairing: PAIRING_SYNC()
+});
+document.getElementById("scene").innerHTML =
+    SYNTH.renderScene(fusion);
 
 </pre>
 
